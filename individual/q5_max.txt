@@ -1,0 +1,19 @@
+CODE:
+
+max(X,Y,M):- X>Y, M is X.
+max(_,Y,M):- M is Y.
+
+
+OUTPUT:
+
+% d:/SEM - 6/Artifical intelligence/max.pl compiled 0.00 sec, 1 clauses
+?- max(4,2,M).
+M = 4 .
+
+?- max(0,10,M).
+M = 10.
+
+?- max(6,6,M).
+M = 6.
+
+?- 

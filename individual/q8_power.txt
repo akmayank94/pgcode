@@ -1,0 +1,19 @@
+CODE:
+power(Num, Pow, Ans):-  Ans is Num ** Pow.
+
+OUTPUT:
+
+% d:/SEM - 6/Artifical intelligence/power.pl compiled 0.00 sec, 0 clauses
+?- power(2,5,Ans).
+Ans = 32.
+
+?- power(4,4,Ans).
+Ans = 256.
+
+?- power(5,5,Ans).
+Ans = 3125.
+
+?- power(10,2,Ans).
+Ans = 100.
+
+?- 

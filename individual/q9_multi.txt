@@ -1,0 +1,15 @@
+CODE:
+multi(N1,N2,R):- R is N1 * N2.
+
+
+OUTPUT:
+% d:/SEM - 6/Artifical intelligence/multi.pl compiled 0.00 sec, 1 clauses
+?-  multi(5,12,R).
+R = 60.
+
+?- multi(12.5,34,R).
+R = 425.0. 
+
+?- multi(0,14,R).
+R = 0.
+

@@ -1,0 +1,14 @@
+CODE:
+
+sum(X,Y,Z):- Z is X+Y.
+
+
+OUTPUT:
+
+?-  
+% d:/SEM - 6/Artifical intelligence/sum.pl compiled 0.00 sec, 1 clauses
+?-  sum(10,24,Z).
+Z = 34.
+
+?- sum(7.9,23.5,Z).
+Z = 31.4.

@@ -1,0 +1,22 @@
+CODE:
+
+fact(0,1).
+fact(N,X):- N1 is N-1, fact(N1,X1), X is X1 * N.
+
+
+OUTPUT:
+
+% d:/SEM - 6/Artifical intelligence/factorial.pl compiled 0.00 sec, 2 clauses
+?- fact(4,X).
+X = 24 .
+
+?- fact(0,X).
+X = 1 .
+
+?- fact(1,X).
+X = 1 .
+
+?- fact(13,X).
+X = 6227020800 .
+
+?- 

@@ -1,0 +1,24 @@
+CODE:
+delete(1, [_|T], T).  % Base case: Remove the first element.
+
+delete(N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    delete(N1, T, R).  % Recursively delete from the tail.
+
+
+OUTPUT:
+% d:/SEM - 6/Artificial intelligence/practical/delete_nth.pl compiled 0.00 sec, 2 clauses
+?- delete(3,[1,2,3,4],R).
+R = [1, 2, 4] .
+
+?- delete(1,[1,3,5,7,9],R).
+R = [3, 5, 7, 9] .
+
+?- delete(2,[apple,banana,cherry,mango],R).
+R = [apple, cherry, mango] .
+
+?- delete(4,[x,y,z,w],R).
+R = [x, y, z] .
+
+?- 

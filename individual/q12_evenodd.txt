@@ -1,0 +1,27 @@
+Code:
+
+evenlength([]).          
+oddlength([_]).         
+
+% Recursive Cases
+evenlength([_,_|T]) :-     
+    evenlength(T).       
+
+oddlength([_,_|T]) :-     
+    oddlength(T).      
+
+
+
+Output:
+
+?- evenlength([a, b, c, d]).
+true.
+
+?- oddlength([1, 2, 3, 4, 5]).
+true.
+
+?- evenlength([x, y, z]).
+false.
+
+?- oddlength([p, q, r, s, t]).
+true.

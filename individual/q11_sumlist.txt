@@ -1,0 +1,23 @@
+Code: 
+
+sumlist([],0).
+sumlist([H|T],S):-
+    sumlist(T, S1),
+    S is H + S1.
+
+Output:
+
+% d:/SEM - 6/Artifical intelligence/practical/sumlist.pl compiled 0.00 sec, 2 clauses
+?- sumlist([1,3,5,7,9],S).
+S = 25.
+
+?- sumlist([],0).
+true.
+
+?- sumlist([],S).
+S = 0.
+
+?- sumlist([1.2,2.3,3.4],S).
+S = 6.8999999999999995.
+
+?- 

@@ -1,0 +1,19 @@
+Code:
+
+conc([],L,L).
+conc([X|L1],L2,[X|L3]):-
+    conc(L1,L2,L3).
+
+
+Output:
+% d:/SEM - 6/Artificial intelligence/practical/concat.pl compiled 0.00 sec, 2 clauses
+?- conc([a,b,c],[1,2,3],L3).
+L3 = [a, b, c, 1, 2, 3].
+
+?- conc([a,[b,c],d],[a,[],b],L3).
+L3 = [a, [b, c], d, a, [], b].
+
+?- conc([p,q,r],[],L3).
+L3 = [p, q, r].
+
+?- 

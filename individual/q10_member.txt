@@ -1,0 +1,20 @@
+code: 
+
+member(X,[X| Tail]).
+member(X,[Head | Tail]):-
+    member(X, Tail).
+
+
+output:
+
+% d:/SEM - 6/Artifical intelligence/practical/member.pl compiled 0.02 sec, 3 clauses
+?- member(b, [a,b,c]).
+true .
+
+?- member(b,[a,[b,c]]).
+false.
+
+?- member([q,r],[p,[q,r]]).
+true .
+
+?- 

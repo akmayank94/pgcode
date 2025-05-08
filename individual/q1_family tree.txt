@@ -1,0 +1,183 @@
+CODE:
+
+%fact
+male(vinod).
+male(naman).
+male(rohan).
+male(aditya).
+male(rohit).
+male(avinash).
+male(kairav).
+male(garvit).
+
+
+female(kiran).
+female(mansi).
+female(saloni).
+female(kirti).
+female(shifali).
+female(naina).
+
+husband(vinod, kiran).
+husband(rohan, mansi).
+husband(aditya, shifali).
+husband(garvit, kirti).
+
+parent(vinod, mansi).
+parent(vinod, saloni).
+parent(vinod, kirti).
+parent(kiran, mansi).
+parent(kiran, saloni).
+parent(kiran, kirti).
+parent(mansi, naina).
+parent(rohan, naina).
+parent(shifali, kairav).
+parent(aditya, kairav).
+parent(shifali,kiran).
+parent(aditya, kiran).
+parent(garvit, naman).
+parent(kirti, naman).
+
+%rules
+grandchild(X,Y):- grandparent(Y,X).
+
+grandson(X,Y):- male(X,Y),
+    grandchild(X,Y).
+
+granddaughter(X,Y):- female(X),
+    grandchild(X,Y).
+
+wife(X,Y):- husband(Y,X).
+
+married(X,Y):-
+    wife(X,Y),
+    husband(Y,X).
+
+married(X,Y):-
+    wife(Y,X),
+    husband(X,Y).
+
+father(X,Y):- male(X),
+    parent(X,Y).
+
+mother(X,Y):- female(X),
+    parent(X,Y).
+
+grandparent(X,Y):- parent(X,Z),
+    parent(Z,Y).
+
+
+grandfather(X,Y):- male(X),
+    grandparent(X,Y).
+
+grandmother(X,Y):- female(X),
+    grandparent(X,Y).
+
+brother(X,Y):- male(X),
+    sibling(X,Y).
+
+sister(X,Y):- female(X),
+    sibling(X,Y).
+
+uncle(X,Y):- parent(Z,Y),
+    brother(Z,X).
+
+aunt(X,Y):- parent(Z,Y),
+    sister(Z,X).
+
+cousin(X,Y):-
+    father(A,X),
+    father(B,Y),
+    brother(A,B).
+
+cousin(X, Y) :- mother(A, X),
+    mother(B, Y),
+    sister(A, B).
+
+
+child(X,Y):- parent(Y,X).
+
+son(X,Y):-male(X),
+    parent(Y,X).
+
+daughter(X,Y):- female(X),
+    parent(Y,X).
+
+sibling(X,Y):-father(A,X),
+    father(A,Y),
+    mother(B,X),
+    mother(B,Y),
+    X\=Y.
+
+bhabhi(X,Y):-male(Y),
+    brother(Z,Y),
+    wife(X,Z).
+
+nephew(X,Y):- male(X),
+    parent(F,X),
+    sibling(F,Y).
+
+niece(X,Y):-female(X),
+    parent(A,X),
+    sibling(A,Y).
+
+ancestor(X,Y):-parent(X,Y).
+ancestor(X,Y):-parent(X,Z),
+    ancestor(Z,Y).
+
+descendent(X,Y):-ancestor(Y,X).
+
+
+
+OUTPUT:
+
+?- 
+% d:/SEM - 6/Artifical intelligence/family tree.pl compiled 0.00 sec, 59 clauses
+?- male(X)
+|    .
+X = vinod .
+
+?- male(X).
+X = vinod ;
+X = naman ;
+X = rohan ;
+X = aditya ;
+X = rohit ;
+X = avinash ;
+X = kairav ;
+X = garvit.
+
+?-  female(X).
+X = kiran ;
+X = mansi ;
+X = saloni ;
+X = kirti ;
+X = shifali ;
+X = naina.
+
+?- mother(mansi, X).
+X = naina.
+
+?- mother(kiran,X).
+X = mansi ;
+X = saloni ;
+X = kirti.
+
+?- grandchild(mansi,X).
+X = shifali ;
+X = aditya ;
+false.
+
+?- cousin(mansi,X).
+false.
+
+?- cousin(naina,X).
+X = naman ;
+
+ ?- married(vinod,X).
+X = kiran.
+
+?- married(mansi,X).
+X = rohan .
+
+?- 

@@ -1,0 +1,26 @@
+Code:
+
+maxlist([X],X).
+maxlist([H|T],M):-
+    maxlist(T, M1),
+    M is max(H, M1).
+
+Output:
+
+% d:/SEM - 6/Artifical intelligence/practical/maxlist.pl compiled 0.00 sec, 2 clauses
+?- maxlist([10,5,2,8,9], M).
+M = 10 .
+
+?- maxlist([11,12,23,100,1], M).
+M = 100 .
+
+?- maxlist([2],M).
+M = 2 .
+
+?- maxlist([1.2,5.6,1.20,1.25],M).
+M = 5.6 .
+
+?- maxlist([1.2,5.256,1.20,5.25],M).
+M = 5.256 .
+
+?- 
