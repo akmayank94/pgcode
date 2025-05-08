@@ -1,0 +1,313 @@
+sus
+
+%family tree—-------
+
+wife(X,Y):- husband(Y,X).
+
+
+married(X,Y):- wife(X,Y),husband(Y,X) | wife(Y,X),husband(Y,X).
+
+
+father(X,Y):-male(X),parent(X,Y).
+
+
+mother(X,Y):-female(X),parent(X,Y).
+
+
+grandparent(X,Y):-parent(X,Z),parent(Z,Y).
+
+
+grandfather(X,Y):- male(X),grandparent(X,Y).
+
+
+grandmother(X,Y):- female(X),grandparent(X,Y).
+
+
+grandchild(X,Y):- grandparent(Y,X).
+
+
+grandson(X,Y):-male(X),grandchild(X,Y).
+
+
+granddaughter(X,Y):-female(X),grandchild(X,Y).
+
+
+sibling(X,Y):-parent(Z,X),parent(Z,Y), X\=Y.
+
+
+sister(X,Y):-female(X),sibling(X,Y).
+
+
+brother(X,Y):-male(X),sibling(X,Y).
+
+
+uncle(X,Y):- parent(Z,Y),brother(Z,X).
+
+
+aunt(X,Y):-parent(Z,Y),sister(Z,X).
+
+
+______________________________________
+
+
+conc([],L2,L2).
+
+conc([H|T1],L2,[H|T2]):- conc(T1,L2,T2).
+
+
+concatenate_lists :-
+
+    write('Enter first list: '), read(L1),
+
+    write('Enter second list: '), read(L2),
+
+    conc(L1, L2, L3),
+
+    write('Concatenated list: '), write(L3), nl.
+
+
+________________________________________
+
+reverse([],[]).
+
+reverse([H|T],R):-reverse(T,R1),conc(R1,[H],R).
+
+reverse_input_list :-
+
+    write('Enter the list: '), read(L),
+
+    reverse(L, R),
+
+    write('Reversed list: '), write(R), nl.
+
+_________________________________________
+
+sum:-
+
+    write('Enter the first number, please:'),
+
+    read(X),    
+
+    write('Enter the second number, please:'),
+
+    read(Y),
+
+    process(X,Y).
+
+
+process(N,M):-
+
+    S is N+M,
+
+    write('Sum of '),write(N), write(' & '),write(M), write(' is :'),
+
+    write( S),nl.
+
+
+__________________________________________
+
+
+max:-
+
+    write('Enter the first number, please:'),
+
+    read(X),    
+
+    write('Enter the second number, please:'),
+
+    read(Y),
+
+    process(X,Y).
+
+
+process(X,Y):-
+
+    (X>=Y-> Z is X;
+
+    Z is Y),
+
+    write('max btw '),write(X),write(' & '),write(Y),write(' is: '),
+
+    write(Z),nl.
+
+
+______________________________
+
+
+factorial(0, 1).
+
+factorial(N, Result) :-
+
+    N > 0,                  
+
+    N1 is N - 1,              
+
+    factorial(N1, R),
+
+    Result is N * R.
+
+
+factorial:-
+
+    write('Enter the number please:'),
+
+    read(X),
+
+    factorial(X,Result),
+
+    write('factorial of '),write(X),write(' is: '),
+
+        write(Result),nl.
+
+
+______________________________________________
+
+
+generate_fib(1,0).
+
+generate_fib(2,1).
+
+generate_fib(N,A):-
+
+    N1 is N-1,
+
+    generate_fib(N1,A1),
+
+    N2 is N-2,
+
+    generate_fib(N2,A2),
+
+    A is A1+A2.
+
+
+generate_fib:-
+
+    write('Enter the number please:'),
+
+    read(X),
+
+    generate_fib(X,A),
+
+    write('fibonacci of '),write(X),write(' is: '),
+
+        write(A),nl,
+
+        read(stop),!.
+
+________________________________________________________
+
+power(_,0,1).
+
+power(N,P,A):-
+
+    P>0,
+
+    P1 is P-1,
+
+    power(N,P1,R),
+
+    A is N*R.
+
+______________________________________
+
+member(X, [X|_]).
+
+member(X, [_|T]) :- member(X, T).
+
+
+check_member :-
+
+    read(List),
+
+    read(Element),
+
+    (member(Element, List) -> write('Yes'); write('No')).
+
+
+___________________________________________________
+
+sumlist([],0).
+
+sumlist([H|T],S):-sumlist(T,S1), S is H + S1.
+
+
+check_sumlist :-
+
+    read(List),
+
+    (sumlist(List,Sum) -> write('sum ='),write(Sum); write('No')).
+
+____________________________________________________________
+
+evenlength([]).
+
+evenlength([_|T]):-oddlength(T).
+
+oddlength([_|T]):-evenlength(T).
+
+
+check_length :-
+
+    write('Enter a list: '),
+
+    read(L),
+
+    (evenlength(L) -> write('Even length'); write('Odd length')), nl.
+
+
+_________________________________________________________________
+
+maxlist([X], X).
+
+maxlist([H|T], M) :-
+
+    maxlist(T, M1),
+
+    (M1 > H -> M = M1 ; M = H).
+
+
+check_maxlist :-
+
+    write('Enter a list: '),
+
+    read(List),
+
+    maxlist(List, Max),
+
+    write('Max num = '), write(Max), nl.
+
+
+_______________________________________________________________
+
+insert(I,1,L,[I|L]).
+
+insert(I, N, [H|T], [H|R]):-N1 is N-1,insert(I,N1,T,R).
+
+
+check_insert :-
+
+    read(Num),
+
+    read(P),
+
+    read(L),
+
+    insert(Num,P,L,R),
+
+    write('resultant list ='),write(R),nl.
+
+______________________________________________________________
+
+
+delete(1,[H|T],T).
+
+delete(N,[H|T],[H|R]):-N1 is N-1,delete(N1,T,R).
+
+
+check_delete :-
+
+    read(Pos),
+
+    read(L),
+
+    (delete(Pos,L,R)-> write('resultant list ='),write(R),nl);write('NUM NOT FOUND'),nl.
